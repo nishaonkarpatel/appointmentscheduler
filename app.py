@@ -4,37 +4,34 @@ import streamlit.components.v1 as components
 st.set_page_config(page_title="Appointment Scheduler", layout="wide")
 st.title("💬 Appointment Scheduler")
 
-# Make the Streamlit page background plain white
+# Keep page background plain
 st.markdown(
-    """
-    <style>
-      .stApp { background: #ffffff; }
-    </style>
-    """,
+    "<style>.stApp{background:#ffffff;}</style>",
     unsafe_allow_html=True,
 )
 
-# Inject Dialogflow Messenger as a floating popup (bottom-right), like your screenshot
+# Render Dialogflow Messenger inside a visible iframe
 components.html(
     """
     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 
     <style>
-      /* Float the chat widget like a popup on the page edge */
+      /* Position inside the iframe (bottom-right look) */
       df-messenger {
         position: fixed;
-        right: 24px;
-        bottom: 24px;
+        right: 16px;
+        bottom: 16px;
         z-index: 999;
 
-        /* Plain, minimal theme */
-        --df-messenger-chat-background-color: #ffffff;  /* chat area */
+        /* simple, plain theme */
+        --df-messenger-chat-background-color: #ffffff;
         --df-messenger-font-color: #000000;
-        --df-messenger-send-icon: #1a73e8;
-        --df-messenger-user-message: #e6f0ff;  /* optional subtle user bubble */
-        --df-messenger-bot-message: #f5f5f5;   /* optional subtle bot bubble */
-        --df-messenger-button-titlebar-color: #1a73e8; /* header/button color */
+        --df-messenger-button-titlebar-color: #1a73e8;
+        --df-messenger-user-message: #e6f0ff;
+        --df-messenger-bot-message: #f5f5f5;
       }
+      /* Remove default page spacing inside the iframe */
+      body { margin: 0; }
     </style>
 
     <df-messenger
@@ -44,5 +41,7 @@ components.html(
       language-code="en">
     </df-messenger>
     """,
-    height=0,   # widget floats; no space needed in the layout
+    height=640,   # <-- give it room to display
+    width=420,    # optional; adjust to taste
+    scrolling=False
 )
