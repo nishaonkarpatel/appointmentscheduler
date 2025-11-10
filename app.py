@@ -17,9 +17,9 @@ components.html(
         <df-messenger
           intent="WELCOME"
           chat-title="AppointmentScheduler"
-          agent-id="06a31fc3-12d5-4de7-9e62-878943f9f1bf"
-          language-code="en">
-        </df-messenger>
+          agent-id="63b07565-65be-473b-96ae-c093e6226c35"
+          language-code="en"
+        ></df-messenger>
       </body>
     </html>
     """,
